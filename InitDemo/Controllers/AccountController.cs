@@ -160,7 +160,7 @@ namespace InitDemo.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
 
-           
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -177,25 +177,19 @@ namespace InitDemo.Controllers
 
                     var roleStore = new RoleStore<IdentityRole>(db);
                     var roleManager = new RoleManager<IdentityRole>(roleStore);
-                    var applicationRoleAdministrator = new IdentityRole("Admin");
-                    if (!roleManager.RoleExists(applicationRoleAdministrator.Name))
-                    {
-                        roleManager.Create(applicationRoleAdministrator);
-                    }
-                    // do some logic to find your applicationUserAdministrator
+                    IdentityRole r =  roleStore.Roles.First(x => x.Name == "Admin");
 
-                    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-
-                    var applicationUserAdministrator = userManager.FindByName("Admin");
-                    userManager.AddToRole(applicationUserAdministrator.Id, applicationRoleAdministrator.Name);
+                   
 
 
-                    IdentityUserRole ur = new IdentityUserRole();
-                    ur.RoleId = applicationRoleAdministrator.Id;
-                    ur.UserId = user.Id;
+                   // IdentityUserRole ur = new IdentityUserRole();
+                  //  ur.RoleId = r.Id;
+                  //  ur.UserId = user.Id;
 
-                    user.Roles.Add(ur);
+                  //  user.Roles.Add(ur);
+                    UserManager.AddToRole(user.Id, "Admin");
                     
+
                     db.SaveChanges();
                     
                     return RedirectToAction("Index", "Home");
