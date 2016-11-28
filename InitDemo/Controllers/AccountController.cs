@@ -173,11 +173,25 @@ namespace InitDemo.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-                    var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole("Admin");
-                   
+                    //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+
+                    var roleStore = new RoleStore<IdentityRole>(db);
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    var applicationRoleAdministrator = new IdentityRole("Admin");
+                    if (!roleManager.RoleExists(applicationRoleAdministrator.Name))
+                    {
+                        roleManager.Create(applicationRoleAdministrator);
+                    }
+                    // do some logic to find your applicationUserAdministrator
+
+                    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
+                    var applicationUserAdministrator = userManager.FindByName("Admin");
+                    userManager.AddToRole(applicationUserAdministrator.Id, applicationRoleAdministrator.Name);
+
+
                     IdentityUserRole ur = new IdentityUserRole();
-                    ur.RoleId = role.Id;
+                    ur.RoleId = applicationRoleAdministrator.Id;
                     ur.UserId = user.Id;
 
                     user.Roles.Add(ur);
