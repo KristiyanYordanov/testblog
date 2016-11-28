@@ -22,6 +22,7 @@ namespace InitDemo.Data
         {
             return new BlockSystemBdContext();
         }
-        
+
+        //public System.Data.Entity.DbSet<InitDemo.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

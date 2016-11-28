@@ -74,10 +74,8 @@ namespace InitDemo.Controllers
             {
                 try
                 {
-
                     ctx.SaveChanges();
-
-                    return RedirectToAction("Post/" + post.Id, "Home");
+                                        return RedirectToAction("Post/" + post.Id, "Home");
                 }
                 catch (RetryLimitExceededException /* dex */)
                 {
