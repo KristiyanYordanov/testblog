@@ -1,0 +1,23 @@
+﻿@model IEnumerable<InitDemo.Models.Post>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@foreach(var post in Model)
+    {
+        <div class="row">
+            <div class="jumbotron">
+
+                <p class="lead">@post.Name</p>
+                <p class="lead">@post.Content</p>
+              
+              <p>
+                    
+
+                @Ajax.ActionLink("Home", "Post","Home", new { id = @post.Id }, new AjaxOptions { HttpMethod = "Get" })
+            </div>
+
+        </div>
+
+
+    }
