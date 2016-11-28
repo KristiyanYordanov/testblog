@@ -221,6 +221,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -321,6 +322,7 @@
     <Folder Include="Areas\PrivateUser\Controllers\" />
     <Folder Include="Areas\PrivateUser\Models\" />
     <Folder Include="Areas\PrivateUser\Views\Shared\" />
+    <Folder Include="Views\Roles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

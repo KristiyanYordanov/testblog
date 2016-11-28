@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using InitDemo.Models;
 using InitDemo.Data;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace InitDemo
 {
@@ -35,7 +36,7 @@ namespace InitDemo
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -64,6 +65,47 @@ namespace InitDemo
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+            createRolesandUsers();
+        }
+
+        private void createRolesandUsers()
+        {
+            BlockSystemBdContext context = new BlockSystemBdContext();
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+
+            // In Startup iam creating first Admin Role and creating a default Admin User 
+            if (!roleManager.RoleExists("Admin"))
+            {
+
+                // first we create Admin rool
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Admin";
+                roleManager.Create(role);
+
+                //Here we create a Admin super user who will maintain the website				
+
+                var user = new ApplicationUser();
+                user.UserName = "shanu";
+                user.Email = "syedshanumcain@gmail.com";
+
+                string userPWD = "A@Z200711";
+
+                var chkUser = UserManager.Create(user, userPWD);
+
+                //Add default User to Role Admin
+                if (chkUser.Succeeded)
+                {
+                    var result1 = UserManager.AddToRole(user.Id, "Admin");
+
+                }
+               
+            }
+            context.SaveChanges();
+          
         }
     }
 }
