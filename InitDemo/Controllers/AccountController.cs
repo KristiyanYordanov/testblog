@@ -174,15 +174,16 @@ namespace InitDemo.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-                    var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                    role.Name = "Admin";
-                    roleManager.Create(role);
+                    var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole("Admin");
+                   
                     IdentityUserRole ur = new IdentityUserRole();
                     ur.RoleId = role.Id;
                     ur.UserId = user.Id;
 
                     user.Roles.Add(ur);
+                    
                     db.SaveChanges();
+                    
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

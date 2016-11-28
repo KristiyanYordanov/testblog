@@ -56,7 +56,7 @@ namespace InitDemo.Controllers
                 var s = UserManager.GetRoles(user.GetUserId());
                 var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
                 var roles = roleManager.Roles;
-                
+                //var Roles = context.Roles.ToList();
 
 
                 foreach (var item in roles)

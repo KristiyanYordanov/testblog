@@ -11,7 +11,7 @@ namespace InitDemo.Data
 {
     public class BlockSystemBdContext: IdentityDbContext<ApplicationUser>
     {
-        public BlockSystemBdContext() :base("name=BlogEntities")
+        public BlockSystemBdContext() :base("BlogEntities")
         {
                 
         }

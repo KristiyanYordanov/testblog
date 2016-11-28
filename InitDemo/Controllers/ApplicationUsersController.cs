@@ -11,12 +11,13 @@ using InitDemo.Models;
 
 namespace InitDemo.Controllers
 {
-    [Authorize(Roles = "Admin")]
+   
     public class ApplicationUsersController : Controller
     {
         private BlockSystemBdContext db = new BlockSystemBdContext();
-        
+
         // GET: ApplicationUsers
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.Users.ToList());
