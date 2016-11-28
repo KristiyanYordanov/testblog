@@ -11,6 +11,7 @@ using InitDemo.Models;
 
 namespace InitDemo.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ApplicationUsersController : Controller
     {
         private BlockSystemBdContext db = new BlockSystemBdContext();

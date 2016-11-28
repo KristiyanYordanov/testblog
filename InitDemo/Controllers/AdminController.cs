@@ -7,5 +7,7 @@ namespace InitDemo.Controllers
 {
     public class AdminController
     {
+
+
     }
 }

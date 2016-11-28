@@ -11,16 +11,19 @@ using InitDemo.Models;
 
 namespace InitDemo.Controllers
 {
+
     public class PostsController : Controller
     {
         private BlockSystemBdContext db = new BlockSystemBdContext();
 
+        [AllowAnonymous]
         // GET: Posts
         public ActionResult Index()
         {
             return View(db.Post.ToList());
         }
 
+        [AllowAnonymous]
         // GET: Posts/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,6 +39,7 @@ namespace InitDemo.Controllers
             return View(post);
         }
 
+        
         // GET: Posts/Create
         public ActionResult Create()
         {

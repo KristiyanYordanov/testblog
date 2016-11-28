@@ -89,10 +89,10 @@ namespace InitDemo
                 //Here we create a Admin super user who will maintain the website				
 
                 var user = new ApplicationUser();
-                user.UserName = "shanu";
-                user.Email = "syedshanumcain@gmail.com";
+                user.UserName = "Admin";
+                user.Email = "Admin@gmail.com";
 
-                string userPWD = "A@Z200711";
+                string userPWD = "123456Oo";
 
                 var chkUser = UserManager.Create(user, userPWD);
 
@@ -102,10 +102,64 @@ namespace InitDemo
                     var result1 = UserManager.AddToRole(user.Id, "Admin");
 
                 }
-               
+                context.SaveChanges();
             }
-            context.SaveChanges();
-          
+
+            // In Startup iam creating first Admin Role and creating a default Admin User 
+            if (!roleManager.RoleExists("User"))
+            {
+
+                // first we create Admin rool
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "User";
+                roleManager.Create(role);
+
+                //Here we create a Admin super user who will maintain the website				
+
+                var user = new ApplicationUser();
+                user.UserName = "User";
+                user.Email = "User@gmail.com";
+
+                string userPWD = "123456Oo";
+
+                var chkUser = UserManager.Create(user, userPWD);
+
+                //Add default User to Role Admin
+                if (chkUser.Succeeded)
+                {
+                    var result1 = UserManager.AddToRole(user.Id, "User");
+
+                }
+                context.SaveChanges();
+            }
+
+            if (!roleManager.RoleExists("PrivateUser"))
+            {
+
+                // first we create Admin rool
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "PrivateUser";
+                roleManager.Create(role);
+
+                //Here we create a Admin super user who will maintain the website				
+
+                var user = new ApplicationUser();
+                user.UserName = "PrivateUser";
+                user.Email = "PrivateUser@gmail.com";
+
+                string userPWD = "123456Oo";
+
+                var chkUser = UserManager.Create(user, userPWD);
+
+                //Add default User to Role Admin
+                if (chkUser.Succeeded)
+                {
+                    var result1 = UserManager.AddToRole(user.Id, "PrivateUser");
+
+                }
+                context.SaveChanges();
+            }
+
         }
     }
 }
