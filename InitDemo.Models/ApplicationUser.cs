@@ -18,11 +18,26 @@ namespace InitDemo.Models
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Models.ApplicationUser> manager)
         {
+
+
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
+            manager.PasswordValidator = new PasswordValidator
+            {
+                RequiredLength = 1,
+                RequireDigit = false,
+                RequireLowercase = false,
+                RequireUppercase = false,
+                RequireNonLetterOrDigit = false,
+
+            };
+
             return userIdentity;
+
+          
         }
+
 
     }
 }
