@@ -50,10 +50,7 @@ namespace InitDemo.Controllers
                     var user = User.Identity;
 
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-
-
-
-                var s = UserManager.GetRoles(user.GetUserId());
+                                var s = UserManager.GetRoles(user.GetUserId());
                 var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
                 var roles = roleManager.Roles;
                 //var Roles = context.Roles.ToList();

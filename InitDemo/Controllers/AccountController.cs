@@ -184,7 +184,7 @@ namespace InitDemo.Controllers
                   //  ur.UserId = user.Id;
 
                   //  user.Roles.Add(ur);
-                    UserManager.AddToRole(user.Id, "Admin");
+                    UserManager.AddToRole(user.Id, "User");
                     
                     db.SaveChanges();
                     return RedirectToAction("Index", "Home");

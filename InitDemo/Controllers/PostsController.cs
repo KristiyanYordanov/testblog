@@ -65,6 +65,7 @@ namespace InitDemo.Controllers
             return View(post);
         }
 
+        [Authorize(Roles ="Admin,PrivateUser")]
         // GET: Posts/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -81,6 +82,7 @@ namespace InitDemo.Controllers
             return View(post);
         }
 
+        [Authorize(Roles = "Admin,PrivateUser")]
         // POST: Posts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -99,6 +101,7 @@ namespace InitDemo.Controllers
             return View(post);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Posts/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -114,6 +117,7 @@ namespace InitDemo.Controllers
             return View(post);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
