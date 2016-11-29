@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using InitDemo.Data;
 using InitDemo.Models;
+using InitDemo.Services;
 
 namespace InitDemo.Controllers
 {
@@ -55,6 +56,7 @@ namespace InitDemo.Controllers
         {
             if (ModelState.IsValid)
             {
+                post.DateCreated = DateTime.Now;
                 db.Post.Add(post);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -71,6 +73,7 @@ namespace InitDemo.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Post post = db.Post.Find(id);
+      
             if (post == null)
             {
                 return HttpNotFound();
@@ -88,6 +91,8 @@ namespace InitDemo.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(post).State = EntityState.Modified;
+                DateTimeSwitch.DateTimeToSqlDateTime(post);
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

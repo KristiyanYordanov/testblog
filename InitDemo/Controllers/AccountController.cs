@@ -178,10 +178,7 @@ namespace InitDemo.Controllers
                     var roleStore = new RoleStore<IdentityRole>(db);
                     var roleManager = new RoleManager<IdentityRole>(roleStore);
                     IdentityRole r =  roleStore.Roles.First(x => x.Name == "Admin");
-
-                   
-
-
+                                
                    // IdentityUserRole ur = new IdentityUserRole();
                   //  ur.RoleId = r.Id;
                   //  ur.UserId = user.Id;
@@ -189,15 +186,10 @@ namespace InitDemo.Controllers
                   //  user.Roles.Add(ur);
                     UserManager.AddToRole(user.Id, "Admin");
                     
-
                     db.SaveChanges();
-                    
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
-
-                
-
             }
 
             // If we got this far, something failed, redisplay form
