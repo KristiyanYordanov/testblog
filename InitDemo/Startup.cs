@@ -1,5 +1,10 @@
-﻿using Microsoft.Owin;
+﻿using AutoMapper;
+using InitDemo.Models;
+using InitDemo.ViewModel;
+using Microsoft.Owin;
+using Ninject;
 using Owin;
+using System.Reflection;
 
 [assembly: OwinStartupAttribute(typeof(InitDemo.Startup))]
 namespace InitDemo
@@ -10,5 +15,6 @@ namespace InitDemo
         {
             ConfigureAuth(app);
         }
+
     }
 }
