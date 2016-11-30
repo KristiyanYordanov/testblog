@@ -52,9 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMapperAdapter.cs" />
     <Compile Include="Class1.cs" />
-    <Compile Include="Contracts\IMapper.cs" />
     <Compile Include="Contracts\IPostService.cs" />
     <Compile Include="Contracts\IService.cs" />
     <Compile Include="Contracts\IUsersService.cs" />

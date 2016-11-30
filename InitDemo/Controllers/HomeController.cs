@@ -10,6 +10,8 @@ using System.Data.Entity;
 using InitDemo.Data;
 using System.Data.Entity.Infrastructure;
 using InitDemo.Services.Contracts;
+using InitDemo.ViewModel;
+using AutoMapper;
 
 namespace InitDemo.Controllers
 {
@@ -17,16 +19,24 @@ namespace InitDemo.Controllers
     {
 
         IPostService postService;
-        public HomeController(IPostService postService)
+            
+        private AutoMapper.IMapper _mapper { get; set; }
+
+        public HomeController(IPostService postService, IMapper mapper)
         {
             this.postService = postService;
+            this._mapper = mapper;
         }
         public ActionResult Index()
         {
-            IEnumerable<Post> posts = null;
-            var ctx = new BlockSystemBdContext();
-            posts = ctx.Post.ToList<Post>();
-            return View(posts);
+            var posts = postService.GetAll();
+            List<PostVM> viewModel = _mapper.Map<List<PostVM>>(posts);
+            // IEnumerable<Post> posts = null;
+            // var ctx = new BlockSystemBdContext();
+            // posts = ctx.Post.ToList<Post>();
+                    
+            return View(viewModel);
+
         }
 
         public ActionResult Comments(int postId)

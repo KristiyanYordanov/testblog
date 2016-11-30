@@ -13,6 +13,9 @@ namespace InitDemo.App_Start
     using Services.Contracts;
     using Services;
     using Data;
+    using AutoMapper;
+    using Models;
+    using ViewModel;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -66,7 +69,18 @@ namespace InitDemo.App_Start
             kernel.Bind<IPostService>().To<PostService>();
             kernel.Bind<IUsersService>().To<UsersService>();
             kernel.Bind<IBlogSystemData>().To<BlogSystemData>();
-           
+
+            var config = new MapperConfiguration(
+     c => {
+        // foreach (var profile in profiles)
+        // {
+        //     c.AddProfile(profile);
+        // }
+        c.CreateMap<Post, PostVM>();
+     });
+            // Solution starts here
+            var mapper = config.CreateMapper();
+            kernel.Bind<IMapper>().ToConstant(mapper);
         }        
     }
 }
