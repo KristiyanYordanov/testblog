@@ -356,6 +356,10 @@
       <Project>{c7e7170e-47a5-4840-aab7-8ca867567a5a}</Project>
       <Name>InitDemo.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\InitDemo.Services\InitDemo.Services.csproj">
+      <Project>{f2574e06-6f68-4c74-933c-73bd0dae7def}</Project>
+      <Name>InitDemo.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

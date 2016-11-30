@@ -10,7 +10,9 @@ namespace InitDemo.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-
+    using Services.Contracts;
+    using Services;
+    using Data;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -61,6 +63,10 @@ namespace InitDemo.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IPostService>().To<PostService>();
+            kernel.Bind<IUsersService>().To<UsersService>();
+            kernel.Bind<IBlogSystemData>().To<BlogSystemData>();
+           
         }        
     }
 }

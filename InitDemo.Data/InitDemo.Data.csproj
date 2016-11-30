@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlockSystemBdContext.cs" />
+    <Compile Include="BlogSystemData.cs" />
     <Compile Include="IBlogSystemData.cs" />
     <Compile Include="Migrations\201611240943152_InitialCreate.cs" />
     <Compile Include="Migrations\201611240943152_InitialCreate.Designer.cs">

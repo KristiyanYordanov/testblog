@@ -9,11 +9,18 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using InitDemo.Data;
 using System.Data.Entity.Infrastructure;
+using InitDemo.Services.Contracts;
 
 namespace InitDemo.Controllers
 {
     public class HomeController : Controller
     {
+
+        IPostService postService;
+        public HomeController(IPostService postService)
+        {
+            this.postService = postService;
+        }
         public ActionResult Index()
         {
             IEnumerable<Post> posts = null;

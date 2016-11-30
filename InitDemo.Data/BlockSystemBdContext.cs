@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using InitDemo.Data.Repositories;
 
 namespace InitDemo.Data
 {
@@ -23,7 +24,10 @@ namespace InitDemo.Data
             return new BlockSystemBdContext();
         }
 
+     
         public System.Data.Entity.DbSet<InitDemo.Models.Tag> Tags { get; set; }
+
+      
 
         //public System.Data.Entity.DbSet<InitDemo.Models.Role> IdentityRoles { get; set; }
 

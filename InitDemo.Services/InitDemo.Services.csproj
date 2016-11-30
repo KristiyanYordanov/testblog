@@ -72,10 +72,6 @@
       <Project>{C7E7170E-47A5-4840-AAB7-8CA867567A5A}</Project>
       <Name>InitDemo.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\InitDemo\InitDemo.csproj">
-      <Project>{D86C9DAA-119D-4CD8-9EC0-049153EE3F18}</Project>
-      <Name>InitDemo</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
